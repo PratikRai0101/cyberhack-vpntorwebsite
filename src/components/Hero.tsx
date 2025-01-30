@@ -1,19 +1,20 @@
 import { motion } from "framer-motion";
 import { Shield, Search, Lock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-b from-primary to-secondary text-white">
+    <section className="min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-b from-gray-900 via-purple-900 to-violet-900 text-white">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="text-center max-w-4xl mx-auto"
       >
-        <span className="px-3 py-1 text-sm font-medium bg-accent/10 rounded-full mb-6 inline-block">
+        <span className="px-3 py-1 text-sm font-medium bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-6 inline-block">
           Advanced Cybersecurity Investigation
         </span>
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
           Unmasking Digital Threats
         </h1>
         <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -21,12 +22,16 @@ export const Hero = () => {
           even when masked by VPNs and anonymity networks.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="px-8 py-3 bg-white text-primary font-medium rounded-lg transition-transform hover:scale-105">
-            Explore Tools
-          </button>
-          <button className="px-8 py-3 border border-white/20 rounded-lg transition-transform hover:scale-105">
-            Learn More
-          </button>
+          <Link to="/case-studies">
+            <button className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-lg transition-transform hover:scale-105">
+              View Case Studies
+            </button>
+          </Link>
+          <Link to="/resources">
+            <button className="px-8 py-3 border border-white/20 rounded-lg transition-transform hover:scale-105 hover:bg-white/10">
+              Explore Resources
+            </button>
+          </Link>
         </div>
       </motion.div>
       
@@ -40,17 +45,20 @@ export const Hero = () => {
           {
             icon: Shield,
             title: "Threat Detection",
-            description: "Advanced systems to identify and analyze digital threats in real-time"
+            description: "Advanced systems to identify and analyze digital threats in real-time",
+            color: "bg-gradient-to-r from-purple-500 to-pink-500"
           },
           {
             icon: Search,
             title: "IP Intelligence",
-            description: "Sophisticated tools for tracking and analyzing VPN-masked connections"
+            description: "Sophisticated tools for tracking and analyzing VPN-masked connections",
+            color: "bg-gradient-to-r from-blue-500 to-cyan-500"
           },
           {
             icon: Lock,
             title: "Secure Analysis",
-            description: "Protected environment for investigating cyber threats safely"
+            description: "Protected environment for investigating cyber threats safely",
+            color: "bg-gradient-to-r from-emerald-500 to-teal-500"
           }
         ].map((feature, index) => (
           <motion.div
@@ -58,11 +66,11 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
-            className="p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10"
+            className={`${feature.color} p-6 rounded-xl backdrop-blur-sm border border-white/10`}
           >
-            <feature.icon className="w-10 h-10 mb-4 text-accent" />
+            <feature.icon className="w-10 h-10 mb-4 text-white" />
             <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-            <p className="text-gray-400">{feature.description}</p>
+            <p className="text-gray-100">{feature.description}</p>
           </motion.div>
         ))}
       </motion.div>
