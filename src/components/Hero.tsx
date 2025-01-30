@@ -8,37 +8,65 @@ export const Hero = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center max-w-4xl mx-auto"
       >
-        <span className="px-3 py-1 text-sm font-medium bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-6 inline-block">
+        <motion.span 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="px-3 py-1 text-sm font-medium bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-6 inline-block hover:shadow-lg hover:scale-105 transition-all duration-300"
+        >
           Advanced Cybersecurity Investigation
-        </span>
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+        </motion.span>
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
+        >
           Unmasking Digital Threats
-        </h1>
-        <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
+        >
           Advanced tools and methodologies for identifying perpetrators behind cyber threats,
           even when masked by VPNs and anonymity networks.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
+        </motion.p>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="flex flex-wrap justify-center gap-4"
+        >
           <Link to="/case-studies">
-            <button className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-lg transition-transform hover:scale-105">
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            >
               View Case Studies
-            </button>
+            </motion.button>
           </Link>
           <Link to="/resources">
-            <button className="px-8 py-3 border border-white/20 rounded-lg transition-transform hover:scale-105 hover:bg-white/10">
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 border border-white/20 rounded-lg hover:bg-white/10 hover:border-white/40 transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl"
+            >
               Explore Resources
-            </button>
+            </motion.button>
           </Link>
-        </div>
+        </motion.div>
       </motion.div>
       
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6 }}
+        transition={{ delay: 1, duration: 0.8 }}
         className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto"
       >
         {[
@@ -65,8 +93,9 @@ export const Hero = () => {
             key={index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
-            className={`${feature.color} p-6 rounded-xl backdrop-blur-sm border border-white/10`}
+            transition={{ delay: 1.2 + index * 0.2, duration: 0.6 }}
+            whileHover={{ scale: 1.05, translateY: -5 }}
+            className={`${feature.color} p-6 rounded-xl backdrop-blur-sm border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300`}
           >
             <feature.icon className="w-10 h-10 mb-4 text-white" />
             <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
