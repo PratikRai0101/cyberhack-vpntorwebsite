@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/c0a95b9a-541e-43dd-b084-d55df6f325bb
+**URL**: https://shadowtrace-identifier.lovable.app/
 
 ## What technologies are used for this project?
 
