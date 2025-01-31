@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Search, Lock } from "lucide-react";
+import { Shield, Search, Lock, LogIn, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -49,6 +49,30 @@ export const Hero = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-b from-[#9b87f5] via-[#7E69AB] to-[#6E59A5] text-white">
+      {/* Auth Buttons */}
+      <div className="absolute top-4 right-4 flex gap-4">
+        <Link to="/auth">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300"
+          >
+            <LogIn className="w-4 h-4" />
+            Sign In
+          </motion.button>
+        </Link>
+        <Link to="/auth">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-300"
+          >
+            <UserPlus className="w-4 h-4" />
+            Sign Up
+          </motion.button>
+        </Link>
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
