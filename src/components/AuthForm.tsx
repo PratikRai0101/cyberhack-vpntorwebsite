@@ -4,10 +4,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 
 type AuthMode = "signin" | "signup" | "reset";
 
 export function AuthForm() {
+  const navigate = useNavigate();
   const [mode, setMode] = useState<AuthMode>("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -58,6 +60,7 @@ export function AuthForm() {
           title: "Success!",
           description: "You have been signed in.",
         });
+        navigate("/");
       } else if (mode === "signup") {
         const { error } = await supabase.auth.signUp({
           email,
@@ -79,7 +82,6 @@ export function AuthForm() {
     } catch (error: any) {
       let errorMessage = "An unexpected error occurred";
       
-      // Handle specific error cases
       if (error.message.includes("Invalid login credentials")) {
         errorMessage = "Invalid email or password";
       } else if (error.message.includes("Email not confirmed")) {
@@ -99,7 +101,7 @@ export function AuthForm() {
   };
 
   return (
-    <div className="w-full max-w-md space-y-8 p-8 bg-white rounded-lg shadow-lg animate-fade-up">
+    <div className="w-full max-w-md space-y-8 p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg animate-fade-up">
       <div className="text-center">
         <h2 className="text-2xl font-bold text-primary">
           {mode === "signin"
@@ -119,6 +121,7 @@ export function AuthForm() {
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
             required
+            className="bg-white/50"
           />
         </div>
         {mode !== "reset" && (
@@ -132,10 +135,15 @@ export function AuthForm() {
               disabled={loading}
               required
               minLength={6}
+              className="bg-white/50"
             />
           </div>
         )}
-        <Button type="submit" className="w-full" disabled={loading}>
+        <Button 
+          type="submit" 
+          className="w-full bg-gradient-to-r from-[#9b87f5] to-[#7E69AB] hover:from-[#7E69AB] hover:to-[#6E59A5] text-white" 
+          disabled={loading}
+        >
           {loading ? "Please wait..." : mode === "signin"
             ? "Sign In"
             : mode === "signup"
