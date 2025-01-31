@@ -58,15 +58,15 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-b from-gray-700 via-gray-800 to-gray-900 text-gray-100">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-b from-gray-800 via-gray-900 to-black text-gray-100 pb-32">
       {/* Auth Buttons - Only show if user is not logged in */}
       {!user && (
-        <div className="absolute top-4 right-4 flex gap-4">
+        <div className="fixed top-4 right-4 z-50 flex gap-4">
           <Link to="/auth">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-800/10 rounded-lg border border-gray-400/20 hover:bg-gray-700/20 transition-all duration-300"
+              className="flex items-center gap-2 px-4 py-2 bg-gray-800/80 rounded-lg border border-gray-600 hover:bg-gray-700/80 transition-all duration-300"
             >
               <LogIn className="w-4 h-4" />
               Sign In
@@ -76,7 +76,7 @@ export const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-800/10 rounded-lg border border-gray-400/20 hover:bg-gray-700/20 transition-all duration-300"
+              className="flex items-center gap-2 px-4 py-2 bg-gray-800/80 rounded-lg border border-gray-600 hover:bg-gray-700/80 transition-all duration-300"
             >
               <UserPlus className="w-4 h-4" />
               Sign Up
@@ -89,13 +89,13 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-center max-w-4xl mx-auto"
+        className="text-center max-w-4xl mx-auto mt-24"
       >
         <motion.span 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="px-3 py-1 text-sm font-medium bg-gradient-to-r from-[#D6BCFA] to-[#9b87f5] rounded-full mb-6 inline-block hover:shadow-lg hover:scale-105 transition-all duration-300"
+          className="px-3 py-1 text-sm font-medium bg-gradient-to-r from-gray-700 to-gray-600 rounded-full mb-8 inline-block hover:shadow-lg hover:scale-105 transition-all duration-300"
         >
           Advanced Cybersecurity Investigation
         </motion.span>
@@ -103,7 +103,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-[#D6BCFA] to-white"
+          className="text-4xl md:text-6xl font-bold mb-6 text-white"
         >
           Unmasking Digital Threats
         </motion.h1>
@@ -111,7 +111,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="text-lg md:text-xl text-gray-100 mb-8 max-w-2xl mx-auto"
+          className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
         >
           Advanced tools and methodologies for identifying perpetrators behind cyber threats,
           even when masked by VPNs and anonymity networks.
@@ -126,7 +126,7 @@ export const Hero = () => {
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-[#9b87f5] to-[#7E69AB] text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              className="px-8 py-3 bg-gradient-to-r from-gray-700 to-gray-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
               View Case Studies
             </motion.button>
@@ -135,7 +135,7 @@ export const Hero = () => {
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 border border-white/20 rounded-lg hover:bg-white/10 hover:border-white/40 transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl"
+              className="px-8 py-3 border border-gray-600 rounded-lg hover:bg-gray-800/50 hover:border-gray-500 transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl"
             >
               Explore Resources
             </motion.button>
@@ -155,19 +155,19 @@ export const Hero = () => {
             icon: Shield,
             title: "Threat Detection",
             description: "Advanced systems to identify and analyze digital threats in real-time",
-            color: "bg-gradient-to-r from-gray-700 to-gray-800"
+            color: "bg-gradient-to-r from-gray-800 to-gray-700"
           },
           {
             icon: Search,
             title: "IP Intelligence",
             description: "Sophisticated tools for tracking and analyzing VPN-masked connections",
-            color: "bg-gradient-to-r from-gray-800 to-gray-900"
+            color: "bg-gradient-to-r from-gray-800 to-gray-700"
           },
           {
             icon: Lock,
             title: "Secure Analysis",
             description: "Protected environment for investigating cyber threats safely",
-            color: "bg-gradient-to-r from-gray-900 to-gray-700"
+            color: "bg-gradient-to-r from-gray-800 to-gray-700"
           }
         ].map((feature, index) => (
           <motion.div
@@ -176,11 +176,11 @@ export const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 + index * 0.2, duration: 0.6 }}
             whileHover={{ scale: 1.05, translateY: -5 }}
-            className={`${feature.color} p-6 rounded-xl backdrop-blur-sm border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300`}
+            className={`${feature.color} p-6 rounded-xl backdrop-blur-sm border border-gray-600 shadow-lg hover:shadow-xl transition-all duration-300`}
           >
-            <feature.icon className="w-10 h-10 mb-4 text-white" />
-            <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-            <p className="text-gray-100">{feature.description}</p>
+            <feature.icon className="w-10 h-10 mb-4 text-gray-300" />
+            <h3 className="text-xl font-semibold mb-2 text-gray-200">{feature.title}</h3>
+            <p className="text-gray-300">{feature.description}</p>
           </motion.div>
         ))}
       </motion.div>
@@ -190,9 +190,9 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.6, duration: 0.8 }}
-        className="mt-24 w-full max-w-md mx-auto text-center"
+        className="mt-24 w-full max-w-md mx-auto text-center mb-16"
       >
-        <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-300 to-gray-100">
+        <h2 className="text-3xl font-bold mb-4 text-gray-200">
           Coming Soon
         </h2>
         <p className="text-gray-300 mb-8">
@@ -204,12 +204,12 @@ export const Hero = () => {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="bg-gray-800/10 border-gray-400/20 text-gray-100 placeholder:text-gray-400/60"
+            className="bg-gray-800/50 border-gray-600 text-gray-200 placeholder:text-gray-500"
           />
           <Button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-gray-100 font-medium py-2 rounded-lg transition-all duration-300"
+            className="w-full bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-gray-100 font-medium py-2 rounded-lg transition-all duration-300"
           >
             {isLoading ? "Registering..." : "Get Early Access"}
           </Button>
