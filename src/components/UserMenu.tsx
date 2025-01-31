@@ -37,13 +37,13 @@ export const UserMenu = () => {
   if (!user) return null;
 
   return (
-    <div className="fixed top-4 right-4 flex items-center gap-4 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/20">
-      <span className="text-white">{user.email}</span>
+    <div className="fixed top-4 left-4 flex items-center gap-4 bg-gray-800/10 backdrop-blur-sm px-4 py-2 rounded-lg border border-gray-400/20">
+      <span className="text-gray-200">{user.email}</span>
       <Button
         variant="ghost"
         size="sm"
         onClick={handleSignOut}
-        className="text-white hover:bg-white/20"
+        className="text-gray-200 hover:bg-gray-700/20"
       >
         <LogOut className="w-4 h-4" />
       </Button>
