@@ -11,10 +11,42 @@ export function AuthForm() {
   const [mode, setMode] = useState<AuthMode>("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+
+  const validateForm = () => {
+    if (!email) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please enter your email address",
+      });
+      return false;
+    }
+    if (!password && mode !== "reset") {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please enter your password",
+      });
+      return false;
+    }
+    if (mode !== "reset" && password.length < 6) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Password must be at least 6 characters long",
+      });
+      return false;
+    }
+    return true;
+  };
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
+    setLoading(true);
     try {
       if (mode === "signin") {
         const { error } = await supabase.auth.signInWithPassword({
@@ -44,12 +76,25 @@ export function AuthForm() {
           description: "Password reset instructions have been sent to your email.",
         });
       }
-    } catch (error) {
+    } catch (error: any) {
+      let errorMessage = "An unexpected error occurred";
+      
+      // Handle specific error cases
+      if (error.message.includes("Invalid login credentials")) {
+        errorMessage = "Invalid email or password";
+      } else if (error.message.includes("Email not confirmed")) {
+        errorMessage = "Please verify your email address before signing in";
+      } else if (error.message.includes("User already registered")) {
+        errorMessage = "An account with this email already exists";
+      }
+
       toast({
         variant: "destructive",
         title: "Error",
-        description: error.message,
+        description: errorMessage,
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -72,6 +117,7 @@ export function AuthForm() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
             required
           />
         </div>
@@ -83,12 +129,14 @@ export function AuthForm() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              disabled={loading}
               required
+              minLength={6}
             />
           </div>
         )}
-        <Button type="submit" className="w-full">
-          {mode === "signin"
+        <Button type="submit" className="w-full" disabled={loading}>
+          {loading ? "Please wait..." : mode === "signin"
             ? "Sign In"
             : mode === "signup"
             ? "Sign Up"
@@ -101,6 +149,7 @@ export function AuthForm() {
             <button
               onClick={() => setMode("reset")}
               className="text-primary hover:underline"
+              disabled={loading}
             >
               Forgot password?
             </button>
@@ -109,6 +158,7 @@ export function AuthForm() {
               <button
                 onClick={() => setMode("signup")}
                 className="text-primary hover:underline"
+                disabled={loading}
               >
                 Sign up
               </button>
@@ -120,6 +170,7 @@ export function AuthForm() {
             <button
               onClick={() => setMode("signin")}
               className="text-primary hover:underline"
+              disabled={loading}
             >
               Sign in
             </button>
@@ -130,6 +181,7 @@ export function AuthForm() {
             <button
               onClick={() => setMode("signin")}
               className="text-primary hover:underline"
+              disabled={loading}
             >
               Sign in
             </button>
